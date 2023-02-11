@@ -1,12 +1,12 @@
 def handler(event, content):
-    # request_json = event['body']
+    request_json = event['body']
 
-    # print(request_json)
+    print(request_json)
 
     return {
         'statusCode': 200,
         'body': {
             'content': 'Request Acceptance Complete',
-            'message': 'TEST'
+            'message': request_json
         }
     }
