@@ -12,6 +12,6 @@ def lambda_handler(event, content):
         'statusCode': 200,
         'body': {
             'content': 'Request Acceptance Complete',
-            'message': json.dumps(result)
+            'message': result
         }
     }
