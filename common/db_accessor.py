@@ -41,3 +41,33 @@ class DynamoDbAccess:
             ],
             BillingMode = 'PAY_PER_REQUEST'
         )
+
+
+    def search(
+        self,
+        table_name: str,
+        primary_key: str,
+        search_primary_key: str
+    ) -> any:
+        table = self.dynamodb.table(table_name)
+        result = table.get_item(
+            key={
+                primary_key: search_primary_key
+            }
+        )
+        return result
+
+
+    def insert(
+        self,
+        table_name: str,
+        insert_data: dict | list[dict]
+    ):
+        table = self.dynamodb.Table(table_name)
+
+        if type(insert_data) == dict:
+            table.put_item(Item=insert_data)
+        
+        if type(insert_data) == list:
+            for data in insert_data:
+                table.put_item(Item=data)
