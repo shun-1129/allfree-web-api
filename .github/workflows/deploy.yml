@@ -20,11 +20,6 @@ jobs:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_ID }}
                   aws-region: ${{ secrets.AWS_REGION }}
-                  # role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-                  # role-session-name: GitHubActions
-
-            # - name: get-caller-identity is allowed to run on role.
-            #   run: aws sts get-caller-identity
 
             - name: setup-python
               uses: actions/setup-python@v3
@@ -34,5 +29,6 @@ jobs:
             - name: lambda Build & update
               run: |
                   pip3 install awscli
+                  cp lambda/find_sync/lambda_function.py lambda
                   cd lambda && zip -r package.zip ./*
                   aws lambda update-function-code --function-name allfree-web-api-test-find_sync --zip-file fileb://package.zip --publish
