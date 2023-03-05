@@ -22,6 +22,7 @@ class DynamoDbAccess:
             documents.append(data)
 
         print(type(documents))
+        print(documents)
 
         return documents
 
