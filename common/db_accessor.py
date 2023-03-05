@@ -17,9 +17,9 @@ class DynamoDbAccess:
 
 
     def get_table_list_all(self):
-        documents = (
-            self.dynamodb.tables.all()
-        )
+        documents: list = []
+        for data in self.dynamodb.tables.all():
+            documents.append(data)
 
         print(type(documents))
 
