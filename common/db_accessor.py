@@ -54,7 +54,7 @@ class DynamoDbAccess:
         primary_key: str,
         search_primary_key: str
     ) -> any:
-        table = self.dynamodb.table(table_name)
+        table = self.dynamodb.Table(table_name)
         result = table.scan()
 
         documents: list = []
