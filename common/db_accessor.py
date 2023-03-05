@@ -60,7 +60,11 @@ class DynamoDbAccess:
                 primary_key: search_primary_key
             }
         )
-        return result
+
+        if 'Item' in result:
+            return result['Item']
+        else:
+            return 'Not Found!'
 
 
     def insert(

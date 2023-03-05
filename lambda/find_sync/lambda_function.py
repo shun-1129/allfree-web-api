@@ -4,10 +4,15 @@ from common.db_accessor import DynamoDbAccess
 def lambda_handler(event, content):
     request_json = event['body']
 
-    print(request_json)
+    flag = True
+
+    if flag is True:
+        documents = DynamoDbAccess().search('users', 'user_id',request_json['user_id'])
+    else:
+        documents = DynamoDbAccess().get_table_list_all()
 
     result = {
-        'result': DynamoDbAccess().get_table_list_all()
+        'result': documents
     }
     # data_type = type(result)
 
