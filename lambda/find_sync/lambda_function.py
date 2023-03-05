@@ -1,4 +1,4 @@
-def handler(event, content):
+def lambda_handler(event, content):
     request_json = event['body']
 
     print(request_json)
