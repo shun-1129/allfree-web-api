@@ -15,22 +15,24 @@ jobs:
               uses: actions/checkout@v3
 
             - name: configure-aws-credentials
-              uses: aws-actions/configure-aws-credentials@master
+              uses: aws-actions/configure-aws-credentials@v1
               with:
+                  aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+                  aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
                   aws-region: ${{ secrets.AWS_REGION }}
-                  role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-                  role-session-name: GitHubActions
+                  # role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+                  # role-session-name: GitHubActions
 
-            - name: get-caller-identity is allowed to run on role.
-              run: aws sts get-caller-identity
+            # - name: get-caller-identity is allowed to run on role.
+            #   run: aws sts get-caller-identity
 
             - name: setup-python
               uses: actions/setup-python@v3
               with:
                   python-version: "3.9"
 
-            - name: lambda update
+            - name: lambda Build & update
               run: |
                   pip3 install awscli
                   cd lambda && zip -r package.zip ./*
-                  aws lambda update-function-code --function-name test-http --zip-file fileb://package.zip --publish
+                  aws lambda update-function-code --function-name allfree-web-api-test-find_sync --zip-file fileb://package.zip --publish
