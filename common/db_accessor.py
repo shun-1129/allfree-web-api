@@ -61,7 +61,7 @@ class DynamoDbAccess:
     def insert(
         self,
         table_name: str,
-        insert_data: dict | list[dict]
+        insert_data: dict or list[dict]
     ):
         table = self.dynamodb.Table(table_name)
 
