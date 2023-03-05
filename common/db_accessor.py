@@ -20,7 +20,7 @@ class DynamoDbAccess:
         documents: list = []
         for data in self.dynamodb.tables.all():
             print(type(data))
-            documents.append(data['item'])
+            documents.append(data)
 
         print(type(documents))
         print(documents)
