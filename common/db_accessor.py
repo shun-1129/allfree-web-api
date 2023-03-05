@@ -55,16 +55,16 @@ class DynamoDbAccess:
         search_primary_key: str
     ) -> any:
         table = self.dynamodb.table(table_name)
-        result = table.get_item(
-            key={
-                primary_key: search_primary_key
-            }
-        )
+        result = table.scan()
 
-        if 'Item' in result:
-            return result['Item']
-        else:
-            return 'Not Found!'
+        documents: list = []
+        for item in result['Items']:
+            documents.append({
+                'user_id': item['user_id'],
+                'user_name': item['user_name']
+            })
+
+        return documents
 
 
     def insert(
