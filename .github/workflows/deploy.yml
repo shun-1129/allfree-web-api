@@ -37,7 +37,7 @@ jobs:
             - name: lambda Build & update update_sync
               run: |
                   pip3 install awscli
-                  mv lambda/update_sync/lambda_function.py lambda && rmdir lambda/update_syncs
+                  mv lambda/update_sync/lambda_function.py lambda && rmdir lambda/update_sync
                   cp common/* lambda
                   cd lambda && zip -r package.zip ./*
                   aws lambda update-function-code --function-name allfree-web-api-test-update_sync --zip-file fileb://package.zip --publish
