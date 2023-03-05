@@ -16,11 +16,11 @@ class DynamoDbAccess:
             self.dynamodb = boto3.resource('dynamodb', self.ENDPOINT_URL)
 
 
-    def get_table_list_all(self) -> list:
-        document = list(
+    def get_table_list_all(self):
+        document = (
             self.dynamodb.tables.all()
         )
-        return document if document is not None else []
+        return document
 
 
     def create_table(

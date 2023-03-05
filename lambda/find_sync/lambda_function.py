@@ -7,11 +7,12 @@ def lambda_handler(event, content):
     print(request_json)
 
     result = DynamoDbAccess().get_table_list_all()
+    data_type = type(result)
 
     return {
         'statusCode': 200,
         'body': {
             'content': 'Request Acceptance Complete',
-            'message': result
+            'message': json.dumps(data_type)
         }
     }
