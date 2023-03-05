@@ -17,10 +17,13 @@ class DynamoDbAccess:
 
 
     def get_table_list_all(self):
-        document = (
+        documents = (
             self.dynamodb.tables.all()
         )
-        return document
+
+        print(type(documents))
+
+        return documents
 
 
     def create_table(
