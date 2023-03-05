@@ -1,6 +1,5 @@
 from common.db_accessor import DynamoDbAccess
 
-
 ERROR_RETURN = {
     'Request_Error' : {
         'statusCode': 400,
@@ -15,7 +14,6 @@ ERROR_RETURN = {
         }
     }
 }
-
 
 def lambda_handler(event, content):
     request_json = event['body']
