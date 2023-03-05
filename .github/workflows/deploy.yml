@@ -26,7 +26,15 @@ jobs:
               with:
                   python-version: "3.9"
 
-            - name: lambda Build & update
+            - name: lambda Build & update find_sync
+              run: |
+                  pip3 install awscli
+                  mv lambda/find_sync/lambda_function.py lambda && rmdir lambda/find_sync
+                  cp common/* lambda
+                  cd lambda && zip -r package.zip ./*
+                  aws lambda update-function-code --function-name allfree-web-api-test-find_sync --zip-file fileb://package.zip --publish
+
+            - name: lambda Build & update update_sync
               run: |
                   pip3 install awscli
                   mv lambda/find_sync/lambda_function.py lambda && rmdir lambda/find_sync
