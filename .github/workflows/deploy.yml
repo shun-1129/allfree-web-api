@@ -4,6 +4,9 @@ on:
         branches:
             - test
 jobs:
+    env:
+        branches: [test, dev, master]
+
     deploy:
         runs-on: ubuntu-latest
         permissions:
