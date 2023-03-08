@@ -26,6 +26,8 @@ def lambda_handler(event, content):
         'user_name': request_json['user_name']
     }
 
+    print(insert_data)
+
     try:
         DynamoDbAccess().insert(table_name='users', insert_data=insert_data)
     except:
