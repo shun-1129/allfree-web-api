@@ -4,9 +4,6 @@ on:
         branches:
             - test
 
-env:
-    branches: [test, dev, master]
-
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -33,7 +30,7 @@ jobs:
             - name: test code
               run: |
                   pip3 install awscli
-                  export branch = env.branches
+                  export branch = on.branches
                   python deploy/deploy.py
 
             - name: lambda Build & update find_sync
