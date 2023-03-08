@@ -26,6 +26,11 @@ jobs:
               with:
                   python-version: "3.9"
 
+            - name: test code
+              run: |
+                  pip3 install awscli
+                  python deploy/deploy.py
+
             - name: lambda Build & update find_sync
               run: |
                   pip3 install awscli
