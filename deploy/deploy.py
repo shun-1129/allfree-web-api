@@ -16,8 +16,8 @@ file_path = '../allfree-web-api/'
 query = glob('{}lambda/*'.format(file_path))
 os.makedirs('{}/lambda/lambda/'.format(file_path))
 for val in query:
-    print(val)
-    if val == '{}/lambda/insert_sync':
+    print('{} == {}'.format(val, file_path))
+    if val == '{}/lambda/insert_sync'.format(file_path):
         mv_cmd = 'mv {}lambda/update_sync/lambda_function.py {}lambda/lambda && rmdir {}lambda/insert_sync'.format(
             file_path, file_path, file_path
         )
