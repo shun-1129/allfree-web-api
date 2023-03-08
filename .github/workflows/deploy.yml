@@ -3,10 +3,11 @@ on:
     push:
         branches:
             - test
-jobs:
-    env:
-        branches: [test, dev, master]
 
+env:
+    branches: [test, dev, master]
+
+jobs:
     deploy:
         runs-on: ubuntu-latest
         permissions:
