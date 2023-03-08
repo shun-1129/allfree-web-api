@@ -8,7 +8,7 @@ for key, val in env.items():
     print('key:{} , val:{}'.format(key, val))
 
 try:
-    test = os.environ['branchs']
+    test = os.environ['branch']
     print(test)
 except:
     raise Exception('Error')
