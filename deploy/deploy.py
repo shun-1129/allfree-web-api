@@ -2,8 +2,14 @@ import os
 from glob import glob
 
 print('-------------------------------------------------')
-print(os.environ)
+
+env = os.environ
+for key, val in env.items():
+    print('key:{} , val:{}'.format(key, val))
+
 print('-------------------------------------------------')
 
-file_path = glob('/lambda/')
+file_path = glob('/lambda/*')
 print(file_path)
+
+print('-------------------------------------------------')
