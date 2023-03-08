@@ -9,7 +9,7 @@ for key, val in env.items():
 
 print('-------------------------------------------------')
 
-file_path = glob('../*')
+file_path = glob('../allfree-web-api/*')
 print(file_path)
 
 print('-------------------------------------------------')
