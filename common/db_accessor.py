@@ -61,7 +61,8 @@ class DynamoDbAccess:
         for item in result['Items']:
             documents.append({
                 'user_id': item['user_id'],
-                'user_name': item['user_name']
+                'user_name': item['user_name'],
+                'pass': item['pass']
             })
 
         return documents
