@@ -26,6 +26,9 @@ def lambda_handler(event, content):
         'user_name': request_json['user_name']
     }
 
+    if 'pass' in request_json:
+        insert_data['pass'] = request_json['pass']
+
     print(insert_data)
 
     try:

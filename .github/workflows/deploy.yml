@@ -1,8 +1,9 @@
-name: AWS Lambda Deploy
+name: AWS_Lambda_Deploy
 on:
     push:
         branches:
             - test
+        # branches: [master, dev, test]
 
 jobs:
     deploy:
@@ -10,6 +11,14 @@ jobs:
         permissions:
             id-token: write
             contents: read
+
+        # enviroment:
+        #     name: AWS_Lambda_Deploy
+
+        # steps:
+        #     - name: Extract branch name
+        #       shell: bash
+        #       run: echo "::set-output"
 
         steps:
             - name: checkout
@@ -26,11 +35,6 @@ jobs:
               uses: actions/setup-python@v3
               with:
                   python-version: "3.9"
-
-            - name: test code
-              run: |
-                  pip3 install awscli
-                  python deploy/deploy.py
 
             - name: lambda Build & update find_sync
               run: |
@@ -49,10 +53,10 @@ jobs:
                   cd lambda/lambda && zip -r package.zip ./*
                   aws lambda update-function-code --function-name allfree-web-api-test-update_sync --zip-file fileb://package.zip --publish
 
-            # - name: lambda Build & update insert_sync
-            #   run: |
-            #       pip3 install awscli
-            #       mv lambda/insert_sync/lambda_function.py lambda/lambda && rmdir lambda/insert_sync
-            #       cp -r common lambda/lambda
-            #       cd lambda/lambda && zip -r package.zip ./*
-            #       aws lambda update-function-code --function-name allfree-web-api-test-insert_sync --zip-file fileb://package.zip --publish
+            - name: lambda Build & update insert_sync
+              run: |
+                  pip3 install awscli
+                  mv lambda/insert_sync/lambda_function.py lambda/lambda && rmdir lambda/insert_sync
+                  cp -r common lambda/lambda
+                  cd lambda/lambda && zip -r package.zip ./*
+                  aws lambda update-function-code --function-name allfree-web-api-test-insert_sync --zip-file fileb://package.zip --publish
